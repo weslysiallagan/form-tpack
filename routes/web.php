@@ -33,6 +33,7 @@ Route::get('/home',function() {
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/admin/tabelpertanyaan',[AdminController::class,'tabelPertanyaan']);
+    Route::post('/admin/tabelpertanyaan',[AdminController::class,'tabelPertanyaan']);
     Route::post('/admin',[App\Http\Controllers\AdminController::class,'store']);
     // Route::post('/admin/tabelpertanyaan',[AdminController::class])->name('admin.tabelpertanyaan');
     Route::get('/komponen/getAllKomponen', [AdminController::class, 'getAllKomponen']);

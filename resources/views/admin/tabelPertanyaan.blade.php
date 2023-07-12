@@ -61,7 +61,7 @@
                 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Nama Komponen</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="nama_komponen">
+                    <select class="form-control" id="exampleFormControlSelect1" name="id_komponen">
                         @forelse($pertanyaan as $pert)
                       <option value="{{$pert->komponen->id}}">{{$pert->komponen->nama_komponen}}</option>
                       @empty

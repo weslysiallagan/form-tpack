@@ -32,7 +32,7 @@ class AdminController extends Controller
     }
 
     public function tabelPertanyaan() {
-        $pertanyaan = Pertanyaan::with('komponen')->get();
+        $pertanyaan = Pertanyaan::with('komponen')->get('id_komponen');
         $pertanyaan = Pertanyaan::paginate(4);
         return view('admin.tabelpertanyaan', compact('pertanyaan'));
     }
@@ -42,19 +42,19 @@ class AdminController extends Controller
         return view('admin.tabelpertanyaan', compact('komponen'));
     }
 
-    public function store(Request $request):RedirectResponse {
-        dd($request->all());
-        // $this->validate($request,[
-        //    'id_komponen'  => 'required',
-        //    'pertanyaan' => 'required'
-        // ]);
+    public function store(Request $request) {
+        
+        $this->validate($request,[
+           'id_komponen'  => 'required',
+           'pertanyaan' => 'required'
+        ]);
 
         $pertanyaan = Pertanyaan::create([
             'id_komponen' => $request->id_komponen,
             'pertanyaan' => $request->pertanyaan
         ]);
         
-        return redirect()->route('admin.tabelpertanyaan')->with(['success' => 'Data berhasil ditambahkan']);
+        return view('admin.tabelpertanyaan')->with(['success' => 'Data berhasil ditambahkan']);
     }
 
     function admin() {
