@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KomponenController;
 use App\Http\Controllers\SesiController;
+use App\Models\Komponen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,8 +34,8 @@ Route::get('/home',function() {
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/admin/tabelpertanyaan',[AdminController::class,'tabelPertanyaan']);
-    Route::post('/admin/tabelpertanyaan',[AdminController::class,'tabelPertanyaan']);
-    Route::post('/admin',[App\Http\Controllers\AdminController::class,'store']);
+    // Route::post('/admin/tabelpertanyaan',[AdminController::class,'tabelPertanyaan']);
+    Route::post('/admin/tabelpertanyaan',[App\Http\Controllers\AdminController::class,'store']);
     // Route::post('/admin/tabelpertanyaan',[AdminController::class])->name('admin.tabelpertanyaan');
     Route::get('/komponen/getAllKomponen', [AdminController::class, 'getAllKomponen']);
     Route::get('/admin/dashboard',[AdminController::class,'skor']);

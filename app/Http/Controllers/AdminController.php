@@ -32,9 +32,10 @@ class AdminController extends Controller
     }
 
     public function tabelPertanyaan() {
-        $pertanyaan = Pertanyaan::with('komponen')->get('id_komponen');
+        $komponen = Komponen::all();
+        $pertanyaan = Pertanyaan::with('komponen')->get();
         $pertanyaan = Pertanyaan::paginate(4);
-        return view('admin.tabelpertanyaan', compact('pertanyaan'));
+        return view('admin.tabelpertanyaan', compact(['pertanyaan','komponen']));
     }
 
     public function create(): View {
@@ -43,16 +44,25 @@ class AdminController extends Controller
     }
 
     public function store(Request $request) {
-        
+        // dd($request->all());
         $this->validate($request,[
-           'id_komponen'  => 'required',
-           'pertanyaan' => 'required'
+            'id_komponen'  => 'required',
+            'pertanyaan' => 'required'
         ]);
 
+        // Komponen::create([
+        //     'id' => $request->id,
+        //     'nama_komponen'=> $request->nama_komponen
+        // ]);
+        
         $pertanyaan = Pertanyaan::create([
             'id_komponen' => $request->id_komponen,
             'pertanyaan' => $request->pertanyaan
         ]);
+
+        // $pertanyaan->listKomponen()->saveMany($komponen);
+        
+        // 'komponen' => Komponen::collection($this->whenLoaded('komponen')->slice(0,3)),
         
         return view('admin.tabelpertanyaan')->with(['success' => 'Data berhasil ditambahkan']);
     }

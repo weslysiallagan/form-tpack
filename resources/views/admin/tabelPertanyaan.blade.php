@@ -18,8 +18,8 @@
       </tr>
       </thead>
       <tbody>
-          @if($pertanyaan->count() > 0)
-          @forelse ($pertanyaan as $pert)
+        @if($pertanyaan->count() > 0)
+        @forelse ($pertanyaan as $pert)
           <tr>
               <td scope="row">
                   {{ $pert->komponen->nama_komponen}}
@@ -62,8 +62,8 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Nama Komponen</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="id_komponen">
-                        @forelse($pertanyaan as $pert)
-                      <option value="{{$pert->komponen->id}}">{{$pert->komponen->nama_komponen}}</option>
+                        @forelse($komponen as $komp)
+                      <option value="{{$komp->id}}">{{$komp->nama_komponen}}</option>
                       @empty
                       Data kosong
                     @endforelse
