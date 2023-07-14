@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/admin/dashboard',[AdminController::class,'skor']);
     Route::get('/admin/komponen',[AdminController::class,'listKomponen']);
     Route::get('/user',[AdminController::class,'user'])->middleware('userakses:user');
+    Route::get('/user',[AdminController::class,'formPertanyaan']);
     Route::resource('/komponen',KomponenController::class);
     Route::get('/admin',[AdminController::class,'admin'])->middleware('userakses:admin');
     Route::get('/logout',[SesiController::class,'logout']);

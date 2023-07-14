@@ -67,6 +67,13 @@ class AdminController extends Controller
         return view('admin.tabelpertanyaan')->with(['success' => 'Data berhasil ditambahkan']);
     }
 
+    public function formPertanyaan () {
+        $komponen = Komponen::all();
+        $pertanyaan = Pertanyaan::with('komponen')->get();
+        $pertanyaan = Pertanyaan::paginate(4);
+        return view('user.formpertanyaan',compact('pertanyaan','komponen'));
+    }
+
     function admin() {
         return view('admin.admin');
     }
